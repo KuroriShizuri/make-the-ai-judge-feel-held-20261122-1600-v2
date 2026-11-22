@@ -28,6 +28,10 @@ def main() -> int:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
         f.write(ENTRY)
+    with open("/output/entry.txt", "r", encoding="utf-8", newline="") as f:
+        written = f.read()
+    if written != ENTRY:
+        raise ValueError("round-trip verification failed: written entry differs")
     return 0
 
 
